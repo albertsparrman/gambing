@@ -67,7 +67,7 @@ export default class Game {
       } 
       
       else{
-        this.enemyInterval = 800
+        this.enemyInterval = 600
         if (spawnChance < 0.5) {
           this.enemies.push(new Pumpkin(this, x, y))
         }

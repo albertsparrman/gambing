@@ -20,7 +20,7 @@ export default class Player {
     this.ammoTimer = 0
     this.ammoInterval = 500
 
-    this.lives = 250
+    this.lives = 50
     this.killstreak = 0
     this.kills = 0
 
