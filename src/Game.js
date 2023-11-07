@@ -17,7 +17,7 @@ export default class Game {
     this.enemies = []
     this.items = []
     this.gameOver = false
-    this.paused = true
+    this.paused = false
     this.gravity = 1
     this.debug = false
     this.gameTime = 0
