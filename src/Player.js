@@ -1,10 +1,11 @@
 import Projectile from './Projectile.js'
+import spriteImage from './assets/sprites/lukas.png'
 
 export default class Player {
   constructor(game) {
     this.game = game
-    this.width = 32
-    this.height = 64
+    this.width = 38
+    this.height = 66
     this.x = this.game.width / 2 - this.width / 2
     this.y = this.game.height / 2 - this.height / 2
 
@@ -25,6 +26,20 @@ export default class Player {
 
     this.reloadTimer = 0
     this.reloading = false
+
+    const image = new Image()
+    image.src = spriteImage
+    this.image = image
+
+    this.frameX = 0
+    this.frameY = 0.23
+    this.maxFrame = 4
+    this.fps = 12
+    this.timer = 0
+    this.interval = 1000 / this.fps
+
+    // flip sprite direction
+    this.flip = false
   }
 
   update(deltaTime) {
@@ -72,6 +87,19 @@ export default class Player {
           }
         }
         this.reloading = false
+        
+      }
+
+      if (this.timer > this.interval) {
+        this.frameX++
+        this.timer = 0
+      } else {
+        this.timer += this.fps
+      }
+  
+      // reset frameX when it reaches maxFrame
+      if (this.frameX >= this.maxFrame) {
+        this.frameX = 0
       }
     }
 
@@ -86,8 +114,9 @@ export default class Player {
   }
 
   draw(context) {
-    context.fillStyle = '#f00'
+    context.fillStyle = 'transparent'
     context.fillRect(this.x, this.y, this.width, this.height)
+
     if (this.game.debug) {
       context.strokeStyle = '#000'
       context.strokeRect(this.x, this.y, this.width, this.height)
@@ -107,6 +136,25 @@ export default class Player {
     this.projectiles.forEach((projectile) => {
       projectile.draw(context)
     })
+
+    if (this.flip) {
+      context.save()
+      context.scale(-1, 1)
+    }
+
+    context.drawImage(
+      this.image,
+      this.frameX * this.width,
+      this.frameY * this.height - 14,
+      this.width,
+      this.height,
+      this.flip ? this.x * -1 - this.width : this.x,
+      this.y,
+      this.width,
+      this.height
+    )
+
+    context.restore()
   }
   
   shoot(mouseX, mouseY) {

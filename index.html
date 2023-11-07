@@ -1,30 +1,46 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css">
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <section id="start-menu">
 
-    </section>
-    <script type="module" src="/main.js"></script>
-    <section id="controls">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <title>Vite App</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <section id="start-menu">
+    <h1>Hallå</h1>
+    <button id="start">Start</button>
+    <button id="controls">Controls</button>
+  </section>
+
+  <section id="pause-menu">
+    <h1>Paused</h1>
+    <button id="unpause">Continue</button>
+  </section>
+
+  <script type="module" src="/main.js"></script>
+  <section id="controls-menu">
+    <section class="controls-container">
       <h2>Controls</h2>
       <p>Move your character with "wasd" or the arrow keys</p>
       <p>Aim with your mouse and shoot by pressing left-click</p>
       <p>Press "r" to reload your gun</p>
-
+    </section>
+    <section class="controls-container">
       <h2>Gameplay</h2>
       <p>Monsters spawn in waves and you have to shoot them to defeat them</p>
-      <p>Monsters sometimes drop health when they die which the player can pick up to increase their own health-meter</p>
+      <p>Monsters sometimes drop health when they die which the player can pick up to increase their own health-meter
+      </p>
       <p>Green ammo boxes randomly spawn across the map which the player can pick up to replenish their ammo</p>
       <p>If a player runs out of ammo a reloading sequence will begin which lasts around 2 seconds</p>
     </section>
-    
-  </body>
+    <button id="close">Close</button>
+  </section>
+
+</body>
+
 </html>

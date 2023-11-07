@@ -17,7 +17,8 @@ export default class Game {
     this.enemies = []
     this.items = []
     this.gameOver = false
-    this.paused = false
+    this.gameStarted = false
+    this.paused = true
     this.gravity = 1
     this.debug = false
     this.gameTime = 0
@@ -30,18 +31,17 @@ export default class Game {
 
   update(deltaTime) {
     if (!this.gameOver) {
-      this.gameTime += deltaTime
+      if (!this.paused) {
+        this.gameTime += deltaTime
+      }
+      else if (this.paused) {
+         return
+      }
     }
     else if (this.gameOver) {
        return
     }
 
-    if (!this.paused) {
-      this.gameTime += deltaTime
-    }
-    else if (this.paused) {
-       return
-    }
 
     if (this.enemyTimer > this.enemyInterval) {
       let items = ['north', 'west', 'south', 'east']
@@ -55,11 +55,11 @@ export default class Game {
         y = Math.random() * this.height
         x = 0
       } else if (directions === 'south') {
-        y = this.height - this.tileSize
+        y = this.height
         x = Math.random() * this.width
       } else if (directions === 'east') {
         y = Math.random() * this.height
-        x = this.width - this.tileSize
+        x = this.width
       }
 
 
