@@ -17,6 +17,7 @@ export default class Game {
     this.enemies = []
     this.items = []
     this.gameOver = false
+    this.paused = true
     this.gravity = 1
     this.debug = false
     this.gameTime = 0
@@ -28,10 +29,10 @@ export default class Game {
   }
 
   update(deltaTime) {
-    if (!this.gameOver) {
+    if (!this.paused) {
       this.gameTime += deltaTime
     }
-    else if (this.gameOver) {
+    else if (this.paused) {
        return
     }
 

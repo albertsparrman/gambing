@@ -24,14 +24,3 @@
 }
 
 
-#start-menu {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgb(17, 17, 17);
-  width: 1340px;
-  height: 820px;
-  padding: 1rem;
-  text-align: center;
-}

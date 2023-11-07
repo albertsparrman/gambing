@@ -109,7 +109,7 @@ export default class Player {
       projectile.draw(context)
     })
   }
-
+  
   shoot(mouseX, mouseY) {
     // get angle between player and mouse
     const angle = Math.atan2(
@@ -117,7 +117,7 @@ export default class Player {
       mouseX - (this.x + this.width / 2)
     )
 
-    if (this.ammo > 0) {
+    if (this.ammo > 0 && !this.game.paused) {
       this.ammo--
       this.projectiles.push(
         new Projectile(
