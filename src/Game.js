@@ -124,11 +124,11 @@ export default class Game {
           this.player.totalAmmo += 20
         }
         if (item.type === 'health') {
-          if (this.player.lives <= 220) {
-          this.player.lives += 30
+          if (this.player.lives <= 80) {
+          this.player.lives += 20
           }
-          else if (this.player.lives > 220 && this.player.lives < 250) {
-            this.player.lives = 250
+          else if (this.player.lives > 80 && this.player.lives < 100) {
+            this.player.lives = 100
           }
         }
       }
