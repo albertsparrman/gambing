@@ -17,11 +17,10 @@ export default class UserInterface {
 
     context.textAlign = 'left'
     context.font = `${this.fontSize}px ${this.fontFamily}`
-    context.fillText(`Lives: ${this.game.player.lives}`, 20, 30)
+    context.fillText(`Health: ${this.game.player.lives}`, 20, 30)
     context.fillText(`Ammo: ${this.game.player.ammo} / ${this.game.player.totalAmmo}`, 20, 60)
     context.fillText(`Time: ${(this.game.gameTime * 0.001).toFixed(1)}`, 20, 90)
-    context.fillText(`Killstreak: ${(this.game.player.killstreak)}`, 20, 120)
-    context.fillText(`Kills: ${(this.game.player.kills)}`, 20, 150)
+    context.fillText(`Kills: ${(this.game.player.kills)}`, 20, 120)
 
     if (this.game.gameOver) {
       context.textAlign = 'center'

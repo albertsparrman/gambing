@@ -21,7 +21,6 @@ export default class Player {
     this.ammoInterval = 500
 
     this.lives = 50
-    this.killstreak = 0
     this.kills = 0
 
     this.reloadTimer = 0
@@ -117,7 +116,7 @@ export default class Player {
       mouseX - (this.x + this.width / 2)
     )
 
-    if (this.ammo > 0 && !this.game.paused) {
+    if (this.ammo > 0 && !this.game.paused && !this.game.gameOver) {
       this.ammo--
       this.projectiles.push(
         new Projectile(

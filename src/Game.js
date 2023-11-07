@@ -29,6 +29,13 @@ export default class Game {
   }
 
   update(deltaTime) {
+    if (!this.gameOver) {
+      this.gameTime += deltaTime
+    }
+    else if (this.gameOver) {
+       return
+    }
+
     if (!this.paused) {
       this.gameTime += deltaTime
     }
@@ -92,7 +99,6 @@ export default class Game {
       if (this.checkCollision(this.player, enemy)) {
         enemy.markedForDeletion = true
         this.player.lives -= enemy.damage
-        this.player.killstreak = 0
       }
       this.player.projectiles.forEach((projectile) => {
         if (this.checkCollision(projectile, enemy)) {
@@ -102,7 +108,6 @@ export default class Game {
               this.items.push(new Health(this, enemy.x, enemy.y))
             }
             enemy.markedForDeletion = true
-            this.player.killstreak ++
             this.player.kills ++
           }
           projectile.markedForDeletion = true

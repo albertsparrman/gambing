@@ -8,7 +8,7 @@ export default class Skeleton extends Enemy {
     this.height = 68
     this.x = x
     this.y = y
-    this.speed = 1
+    this.speed = 2
     this.lives = Math.floor(Math.random() * 3) + 3
     this.color = 'transparent'
     this.type = 'skeleton'
@@ -21,7 +21,7 @@ export default class Skeleton extends Enemy {
     this.frameX = 0
     this.frameY = 0.19
     this.maxFrame = 4
-    this.fps = 10
+    this.fps = 12
     this.timer = 0
     this.interval = 1000 / this.fps
 
