@@ -31,7 +31,7 @@ export default class Player {
     image.src = spriteImage
     this.image = image
 
-    this.frameX = 0
+    this.frameX = 1
     this.frameY = 0.23
     this.maxFrame = 4
     this.fps = 12
@@ -89,18 +89,25 @@ export default class Player {
         this.reloading = false
         
       }
+    }
 
-      if (this.timer > this.interval) {
-        this.frameX++
-        this.timer = 0
-      } else {
-        this.timer += this.fps
-      }
-  
-      // reset frameX when it reaches maxFrame
-      if (this.frameX >= this.maxFrame) {
-        this.frameX = 0
-      }
+    if (this.speedX > 0) {
+      this.flip = true
+    } else if (this.speedX < 0) {
+      this.flip = false
+    }
+
+    // sprite animation update
+    if (this.timer > this.interval) {
+      this.frameX++
+      this.timer = 0
+    } else {
+      this.timer += deltaTime
+    }
+
+    // reset frameX when it reaches maxFrame
+    if (this.frameX >= this.maxFrame) {
+      this.frameX = 0
     }
 
 
