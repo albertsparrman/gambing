@@ -6,15 +6,16 @@ export default class UserInterface {
     this.color = 'white'
   }
 
+
   draw(context) {
+    
     context.save()
+    
     context.fillStyle = this.color
     context.shadowOffsetX = 2
     context.shadowOffsetY = 2
     context.shadowColor = 'black'
-
-    
-
+   
     context.textAlign = 'left'
     context.font = `${this.fontSize}px ${this.fontFamily}`
     context.fillText(`Health: ${this.game.player.lives}`, 20, 30)

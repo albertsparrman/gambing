@@ -1,3 +1,5 @@
+import spriteImage from './assets/sprites/nerfDart.png'
+
 export default class Projectile {
   constructor(game, x, y, angle) {
     this.game = game
@@ -10,6 +12,13 @@ export default class Projectile {
     this.speed = 400
     this.damage = 2
     this.markedForDeletion = false
+
+    const image = new Image()
+    image.src = spriteImage
+    this.image = image
+
+    this.frameX = 0
+    this.frameY = 0.4
   }
 
   update(deltaTime) {
@@ -32,6 +41,20 @@ export default class Projectile {
     context.rotate(this.angle)
     context.fillStyle = '#ff0'
     context.fillRect(0, 0, this.width, this.height)
-    context.restore()
+    
+    context.drawImage(
+      this.image,
+      this.frameX * this.width,
+      this.frameY * this.height - 14,
+      this.width,
+      this.height,
+      this.flip ? 0 : 0 ,
+      0,
+      this.width,
+      this.height
+    )
+    
+
+    context.restore() 
   }
 }

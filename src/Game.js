@@ -5,6 +5,7 @@ import Pumpkin from './Pumpkin.js'
 import Ammo from './Ammo.js'
 import Skeleton from './Skeleton.js'
 import Health from './Health.js'
+import Arms from './Arms.js'
 
 export default class Game {
   constructor(width, height, canvasPosition) {
@@ -13,6 +14,8 @@ export default class Game {
     this.canvasPosition = canvasPosition
     this.input = new InputHandler(this)
     this.ui = new UserInterface(this)
+    this.player = new Player(this)
+    this.arms = new Arms(this)
     this.keys = []
     this.enemies = []
     this.items = []
@@ -24,9 +27,6 @@ export default class Game {
     this.gameTime = 0
     this.enemyTimer = 0
     this.enemyInterval = 1000
-
-    this.player = new Player(this)
-
   }
 
   update(deltaTime) {
@@ -93,12 +93,15 @@ export default class Game {
       this.enemyTimer += deltaTime
     }
     this.player.update(deltaTime)
+    this.arms.update(deltaTime)
 
     this.enemies.forEach((enemy) => {
       enemy.update(this.player)
       if (this.checkCollision(this.player, enemy)) {
         enemy.markedForDeletion = true
-        this.player.lives -= enemy.damage
+        if (this.player.lives > 0){
+          this.player.lives -= enemy.damage
+        }
       }
       this.player.projectiles.forEach((projectile) => {
         if (this.checkCollision(projectile, enemy)) {
@@ -138,13 +141,14 @@ export default class Game {
 
 
   draw(context) {
-    this.player.draw(context)
     this.enemies.forEach((enemy) => {
       enemy.draw(context)
     })
     this.items.forEach((item) => {
       item.draw(context)
     })
+    this.player.draw(context)
+    this.arms.draw(context)
     this.ui.draw(context)
   }
 

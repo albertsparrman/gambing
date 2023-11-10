@@ -15,18 +15,18 @@
 }
 
 #canvas1 {
-  border: 4px solid #242424;
   background-image: url(/src/assets/sprites/bakgrund.png);
   background-size: cover;
   margin-left: auto;
   margin-right: auto;
-  border: 20px solid rgb(25, 24, 24);
   max-width: 100%;
   max-height: 100%;
+  box-shadow: 0 0 0px 20px rgb(27, 27, 27);
 }
 
 
 #start-menu {
+  
   justify-content: center;
   position: absolute;
   display: flex;
@@ -34,10 +34,10 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(255, 0, 0, 0.379);
-  width: 1340px;
+  background-color: rgb(23, 23, 23);
   height: 820px;
-  padding: 1rem;
+  aspect-ratio: 1.635 /1;
+  max-height: 100%;
   text-align: center;
 }
 
@@ -51,9 +51,9 @@
   transform: translate(-50%, -50%);
   background-color: rgba(20, 20, 20, 0.416);
   backdrop-filter: blur(2px);
-  width: 1340px;
   height: 820px;
-  padding: 1rem;
+  aspect-ratio: 1.635 /1;
+  max-height: 100%;
   text-align: center;
   
 }

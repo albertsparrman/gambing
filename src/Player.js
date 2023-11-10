@@ -31,7 +31,7 @@ export default class Player {
     image.src = spriteImage
     this.image = image
 
-    this.frameX = 1
+    this.frameX = 0
     this.frameY = 0.23
     this.maxFrame = 4
     this.fps = 12
@@ -52,7 +52,6 @@ export default class Player {
       this.speedX = -this.maxSpeed
     } else if ((this.game.keys.includes('ArrowRight') || this.game.keys.includes('d') || this.game.keys.includes('D')) && this.x - this.maxSpeed < this.game.width - this.width) {
       this.speedX = this.maxSpeed
-      console.log(this.game.width)
     } else {
       this.speedX = 0
     }
@@ -68,7 +67,7 @@ export default class Player {
     this.y += this.speedY
     this.x += this.speedX
 
-
+    
 
     if (this.reloading === true) {
       if (this.reloadTimer - this.game.gameTime < -2000) {
@@ -91,9 +90,11 @@ export default class Player {
       }
     }
 
-    if (this.speedX > 0) {
+    
+
+    if (this.game.input.mouseX > this.x + this.width / 2) {
       this.flip = true
-    } else if (this.speedX < 0) {
+    } else if (this.game.input.mouseX < this.x + this.width / 2) {
       this.flip = false
     }
 
@@ -118,11 +119,13 @@ export default class Player {
     this.projectiles = this.projectiles.filter(
       (projectile) => !projectile.markedForDeletion
     )
+    
+  
+
   }
 
   draw(context) {
-    context.fillStyle = 'transparent'
-    context.fillRect(this.x, this.y, this.width, this.height)
+ 
 
     if (this.game.debug) {
       context.strokeStyle = '#000'
@@ -143,6 +146,8 @@ export default class Player {
     this.projectiles.forEach((projectile) => {
       projectile.draw(context)
     })
+
+    
 
     if (this.flip) {
       context.save()
@@ -171,13 +176,24 @@ export default class Player {
       mouseX - (this.x + this.width / 2)
     )
 
-    if (this.ammo > 0 && !this.game.paused && !this.game.gameOver) {
+    if (this.ammo > 0 && !this.game.paused && !this.game.gameOver && this.flip) {
       this.ammo--
       this.projectiles.push(
         new Projectile(
           this.game,
-          this.x + this.width / 2,
-          this.y + this.height / 2,
+          this.game.arms.x,
+          this.game.arms.y +4,
+          angle
+        )
+      )
+    }
+    else if (this.ammo > 0 && !this.game.paused && !this.game.gameOver && !this.flip) {
+      this.ammo--
+      this.projectiles.push(
+        new Projectile(
+          this.game,
+          this.game.arms.x - this.width / 4,
+          this.game.arms.y +6,
           angle
         )
       )

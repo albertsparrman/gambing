@@ -19,9 +19,6 @@ export default class Enemy {
   }
 
   draw(context) {
-    context.fillStyle = this.color
-    context.fillRect(this.x, this.y, this.width, this.height)
-
     if (this.game.debug) {
       context.strokeRect(this.x, this.y, this.width, this.height)
       context.fillStyle = 'black'
