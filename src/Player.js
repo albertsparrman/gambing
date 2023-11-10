@@ -15,8 +15,8 @@ export default class Player {
     this.speedY = 0
     this.maxSpeed = 6
 
-    this.maxAmmo = 20
-    this.ammo = 20
+    this.maxAmmo = 30
+    this.ammo = 30
     this.totalAmmo = 120
     this.ammoTimer = 0
     this.ammoInterval = 500
@@ -72,15 +72,15 @@ export default class Player {
     if (this.reloading === true) {
       if (this.reloadTimer - this.game.gameTime < -2000) {
         if (this.ammo != 0) {
-          this.totalAmmo -= 20-this.ammo
-          this.ammo = 20
+          this.totalAmmo -= this.maxAmmo-this.ammo
+          this.ammo = this.maxAmmo
         }
         else {
-          if (this.totalAmmo >= 20) {
-            this.ammo = 20
-            this.totalAmmo -= 20
+          if (this.totalAmmo >= this.maxAmmo) {
+            this.ammo = this.maxAmmo
+            this.totalAmmo -= this.maxAmmo
           }
-          else if (this.totalAmmo < 20) {
+          else if (this.totalAmmo < this.maxAmmo) {
             this.ammo += this.totalAmmo
             this.totalAmmo = 0
           }

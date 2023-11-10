@@ -1,11 +1,11 @@
 import Item from "./Item"
-import spriteImage from './assets/sprites/gaming.png'
+import spriteImage from './assets/sprites/ammo.png'
 
 export default class Ammo extends Item {
   constructor(game, x, y) {
     super(game)
-    this.width = 31
-    this.height = 34
+    this.width = 38
+    this.height = 36
     this.x = x
     this.y = y
     this.speed = 0

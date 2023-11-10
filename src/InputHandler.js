@@ -8,6 +8,7 @@ export default class InputHandler {
     const unpauseButton = document.getElementById("unpause")
     const controlButton = document.getElementById("controls")
     const closeButton = document.getElementById("close")
+    const restartButton = document.getElementById("restart")
 
     startButton.addEventListener("click", () => {
       document.getElementById("start-menu").style.display = "none"

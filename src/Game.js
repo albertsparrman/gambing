@@ -1,9 +1,10 @@
 import InputHandler from './InputHandler.js'
 import Player from './Player.js'
 import UserInterface from './UserInterface.js'
-import Pumpkin from './Pumpkin.js'
 import Ammo from './Ammo.js'
+import Pumpkin from './Pumpkin.js'
 import Skeleton from './Skeleton.js'
+import Ghost from './Ghost.js'
 import Health from './Health.js'
 import Arms from './Arms.js'
 
@@ -35,12 +36,15 @@ export default class Game {
         this.gameTime += deltaTime
       }
       else if (this.paused) {
-         return
+        return
       }
     }
     else if (this.gameOver) {
-       return
+      document.getElementById("gameOver").style.display = "flex"
+      return
     }
+
+
 
 
     if (this.enemyTimer > this.enemyInterval) {
@@ -63,18 +67,18 @@ export default class Game {
       }
 
 
-      let spawnChance = Math.random() 
-      if (this.player.kills < 4){
+      let spawnChance = Math.random()
+      if (this.player.kills < 4) {
         if (spawnChance < 0.9) {
           this.enemies.push(new Pumpkin(this, x, y))
         }
         else {
           x = Math.floor(Math.random() * this.width)
-           this.items.push(new Ammo(this, x, y))
+          this.items.push(new Ammo(this, x, y))
         }
-      } 
-      
-      else{
+      }
+
+      else {
         this.enemyInterval = 600
         if (spawnChance < 0.5) {
           this.enemies.push(new Pumpkin(this, x, y))
@@ -84,11 +88,11 @@ export default class Game {
         }
         else {
           x = Math.floor(Math.random() * this.width)
-           this.items.push(new Ammo(this, x, y))
+          this.items.push(new Ammo(this, x, y))
         }
       }
 
-    this.enemyTimer = 0
+      this.enemyTimer = 0
     } else {
       this.enemyTimer += deltaTime
     }
@@ -99,8 +103,11 @@ export default class Game {
       enemy.update(this.player)
       if (this.checkCollision(this.player, enemy)) {
         enemy.markedForDeletion = true
-        if (this.player.lives > 0){
+        if (this.player.lives - enemy.damage > 0) {
           this.player.lives -= enemy.damage
+        }
+        else {
+          this.player.lives = 0
         }
       }
       this.player.projectiles.forEach((projectile) => {
@@ -111,7 +118,7 @@ export default class Game {
               this.items.push(new Health(this, enemy.x, enemy.y))
             }
             enemy.markedForDeletion = true
-            this.player.kills ++
+            this.player.kills++
           }
           projectile.markedForDeletion = true
         }
@@ -128,7 +135,7 @@ export default class Game {
         }
         if (item.type === 'health') {
           if (this.player.lives <= 80) {
-          this.player.lives += 20
+            this.player.lives += 20
           }
           else if (this.player.lives > 80 && this.player.lives < 100) {
             this.player.lives = 100
@@ -141,11 +148,11 @@ export default class Game {
 
 
   draw(context) {
-    this.enemies.forEach((enemy) => {
-      enemy.draw(context)
-    })
     this.items.forEach((item) => {
       item.draw(context)
+    })
+    this.enemies.forEach((enemy) => {
+      enemy.draw(context)
     })
     this.player.draw(context)
     this.arms.draw(context)
