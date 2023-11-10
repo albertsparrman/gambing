@@ -31,6 +31,10 @@ export default class InputHandler {
       this.game.gameStarted = true
     })
 
+    restartButton.addEventListener("click", () => {
+      window.location.reload();
+    })
+
 
     window.addEventListener('keydown', (event) => {
       if (
@@ -58,7 +62,7 @@ export default class InputHandler {
       if (event.key === 'Escape') {
         if (this.game.gameStarted) {
           this.game.paused = !this.game.paused
-          if(this.game.paused) {
+          if (this.game.paused) {
             document.getElementById("pause-menu").style.display = "flex"
           }
           else if (!this.game.paused) {
@@ -88,6 +92,6 @@ export default class InputHandler {
       this.game.player.shoot(this.mouseX, this.mouseY)
     })
 
-    
+
   }
 }

@@ -26,7 +26,6 @@
 
 
 #start-menu {
-  
   justify-content: center;
   position: absolute;
   display: flex;
@@ -79,4 +78,19 @@
   padding: 1rem;
   text-align: center;
   gap: 40px;
+}
+
+#gameOver {
+  justify-content: center;
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgb(23, 23, 23);
+  height: 820px;
+  aspect-ratio: 1.635 /1;
+  max-height: 100%;
+  text-align: center;
 }
