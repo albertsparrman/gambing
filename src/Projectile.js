@@ -9,7 +9,7 @@ export default class Projectile {
     this.y = y
     this.angle = angle
 
-    this.speed = 400
+    this.speed = 500
     this.damage = 2
     this.markedForDeletion = false
 

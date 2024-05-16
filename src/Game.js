@@ -78,13 +78,30 @@ export default class Game {
         }
       }
 
-      else {
-        this.enemyInterval = 600
+      else if (this.player.kills >= 4 && this.player.kills < 10) {
+        this.enemyInterval = 800
         if (spawnChance < 0.5) {
           this.enemies.push(new Pumpkin(this, x, y))
         }
         else if (spawnChance >= 0.5 && spawnChance < 0.9) {
           this.enemies.push(new Skeleton(this, x, y))
+        }
+        else {
+          x = Math.floor(Math.random() * this.width)
+          this.items.push(new Ammo(this, x, y))
+        }
+      }
+
+      else {
+        this.enemyInterval = 700
+        if (spawnChance < 0.3) {
+          this.enemies.push(new Pumpkin(this, x, y))
+        }
+        else if (spawnChance >= 0.3 && spawnChance < 0.7) {
+          this.enemies.push(new Skeleton(this, x, y))
+        }
+        else if (spawnChance >= 0.7 && spawnChance < 0.9) {
+          this.enemies.push(new Ghost(this, x, y))
         }
         else {
           x = Math.floor(Math.random() * this.width)
